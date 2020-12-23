@@ -11,7 +11,7 @@ export default function Map(){
     const [map, setMap] = useState();
 
     useEffect(() => {        
-        mapscript();  
+       mapscript();  
     }, []);
 
     let [isLoding, setIsLoding] = useState(true);
@@ -92,26 +92,26 @@ export default function Map(){
 
     return (
       
-        <div className="input">
-        <div id="map" />  
-        <div className="search">
-            <div className="keywords_input">
-                <input type="text" className="keywords" name="keywords" onChange={onChange}/>
-                <button onClick={onClick}>검색</button>
-            </div>
-            {isLoding ? (
-                <div className="list"></div>
-            ) : (
-                <div className="list">
-                    {pois.map(poi => (
-                        <React.Fragment key={poi.poiid}>
-                            <List key={poi.poiid} address={poi.address} name={poi.name1}/>
-                        </React.Fragment>
-                    ))}
+        <div className="container">
+            <div id="map" className="section map"/>  
+            <div className="section search">
+                <div className="keywords_input">
+                    <input type="text" className="keywords" name="keywords" onChange={onChange}/>
+                    <button onClick={onClick}>검색</button>
                 </div>
-            
-            )}
-        </div> 
+                {isLoding ? (
+                    <div className="list"></div>
+                ) : (
+                    <div className="list">
+                        {pois.map(poi => (
+                            <React.Fragment key={poi.poiid}>
+                                <List key={poi.poiid} address={poi.address} name={poi.name1} dpx={poi.dpx} dpy={poi.dpy} map={map}/>
+                            </React.Fragment>
+                        ))}
+                    </div>
+                
+                )}
+            </div> 
         </div>
     )
     

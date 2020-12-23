@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import List from "./List";
-import Marker from "./Marker";
 import Map from "./Map";
 import "../App.css";
-import "./Map.css";
 function Input(){
     
     let [isLoding, setIsLoding] = useState(true);
