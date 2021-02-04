@@ -18,15 +18,18 @@ export default function Map(){
     let [isSuccessful] = useState(0);
     const [pois, setPoi] = useState([]);
     const [keywords, setInputs] = useState("");
-    
+    const list = document.querySelector('.list');
+    const map_content = document.querySelector('.section.map');
+
     const onChange = (e) => {
+        
+        map_content.classList.add('fix');
+        list.classList.add('on');
+
         setIsLoding(true);
         setInputs(e.target.value);
-    }
-   
-    const onClick = () => {
-
-        getList();  
+        getList();
+        
     }
 
     const mapscript = () => {
@@ -37,16 +40,16 @@ export default function Map(){
             level: 7
         };
         
-        setMap(new window.kakao.maps.Map(container, options));
-       
-       
+        setMap(new window.kakao.maps.Map(container, options));       
     };
+
     const getList = async() => {
 
         const { data } = await axios.get("https://api-maps.cloud.toast.com/maps/v3.0/appkeys/ZJgW6dKQUUSNYWop/searches?query="+ keywords + "&startposition=0&reqcount=10");
         isSuccessful = Number(data.header.resultCode);
-
+        
         if(isSuccessful == 0){
+            map_content.classList.add('fix');
             setPoi(data.search.poi);
             const bounds = new kakao.maps.LatLngBounds();
             data.search.poi.map(poi => (
@@ -58,9 +61,7 @@ export default function Map(){
     }
   
     const displayMarker = (place) => {
-        
-        
-        
+
         var marker = new kakao.maps.Marker({
              map: map,
              position: new kakao.maps.LatLng(place.dpy, place.dpx) 
@@ -96,8 +97,7 @@ export default function Map(){
             <div id="map" className="section map"/>  
             <div className="section search">
                 <div className="keywords_input">
-                    <input type="text" className="keywords" name="keywords" onChange={onChange}/>
-                    <button onClick={onClick}>검색</button>
+                    <input type="text" className="keywords" name="keywords" onChange={onChange}/>                
                 </div>
                 {isLoding ? (
                     <div className="list"></div>
@@ -109,7 +109,6 @@ export default function Map(){
                             </React.Fragment>
                         ))}
                     </div>
-                
                 )}
             </div> 
         </div>

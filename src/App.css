@@ -1,48 +1,113 @@
-.container {
-  background-color: #f6f5f5;
-}
-.search {
-  width: 29.6%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-.map {
-  width: 70%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-}
-.keywords_input {
-  background-color: #22497e;
-}
-.keywords {
-  margin: 6px;
-  width: 37em;
-  height: 2em;
-}
-.keywords_input button {
-  height: 2.4em;
-  margin-right: 6px;
+* {
+  box-sizing: border-box;
+  margin: 0;
 }
 
-.list {
-  background-color: #f6f5f5;
-  height: 95%;
-  right: 0;
-  bottom: 0;
+body {
+  font-family: "Noto Sans KR", sans-serif;
 }
-.list span {
-  display: inline-block;
-  padding-bottom: 10px;
-  text-align: left;
-  margin-left: 0px;
+
+/* Reset CSS */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 16px;
+}
+
+button:focus,
+button:active,
+input:focus,
+input:active,
+textarea:focus,
+textarea:active {
+  outline: none;
+  box-shadow: none;
+}
+
+ul,
+ol,
+li {
+  list-style-type: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+}
+
+/* Map */
+.map {
+  width: 100vw;
+  height: 95vh;
+}
+
+.map.fix {
+  z-index: -1;
+}
+/* Search */
+.search {
+  width: 100vw;
+  height: 5vh;
+}
+.keywords_input {
+  background-color: #4747a7;
+  padding: 4px;
+}
+.keywords {
+  width: 100%;
+  border-style: none;
+}
+
+/* List */
+.list.on {
+  width: 100%;
+  height: auto;
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
 .list_content {
-  padding-bottom: 13px;
-  padding-top: 13px;
-  width: 100%;
-  border-bottom: #d5dddd solid 1px;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  padding: 10px;
+  font-size: 11px;
+  border-bottom: solid 1px #c9c2c2;
+}
+
+/* Desktop */
+@media screen and (min-width: 768px) {
+  .container {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+
+  /* Map */
+  .map {
+    left: 0;
+    position: absolute !important;
+    width: 70vw;
+    height: 100vh;
+  }
+
+  /* Search */
+  .search {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30vw;
+    height: auto;
+  }
+  .keywords_input {
+    width: 100%;
+  }
 }

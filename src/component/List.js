@@ -1,7 +1,6 @@
 /*global kakao */
 import React from "react";
-import PropTypes from "prop-types"
-import "./Map.css";
+import PropTypes from "prop-types";
 
 function List({address, name, dpx, dpy, map}) {
 
